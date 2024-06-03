@@ -1,65 +1,90 @@
 package btsession02;
 
 import java.util.Scanner;
+import java.util.SplittableRandom;
 
 public class bt03 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhập vào số bất kỳ");
         int a = sc.nextInt();
-        if(a>0 && a <10){
-            switch (a){
-                case 1 -> System.out.println("One");
-                case 2 -> System.out.println("Two");
-                case 3 -> System.out.println("Three");
-                case 4 -> System.out.println("Four");
-                case 5 -> System.out.println("Five");
-                case 6 -> System.out.println("Six");
-                case 7 -> System.out.println("Seven");
-                case 8 -> System.out.println("Eight");
-                case 9 -> System.out.println("Nine");
-                default -> System.out.println("Out of ability");
-            }
-        }else if(a >= 10 && a < 20){
-            int ones = a%10;
-            switch (ones){
-                case 0 -> System.out.println("Ten");
-                case 1 -> System.out.println("Eleven");
-                case 2 -> System.out.println("Twelve");
-                case 3 -> System.out.println("Thirdteen");
-                case 4 -> System.out.println("Fourteen");
-                case 5 -> System.out.println("Fifteen");
-                case 6 -> System.out.println("Sixteen");
-                case 7 -> System.out.println("Seventeen");
-                case 8 -> System.out.println("Eightteen");
-                case 9 -> System.out.println("Nineteen");
-            }
-        } else if (a >= 20 && a <= 99) {
-                int tens = a/10;
-                int ones1 = a%10;
-            switch (tens){
-                case 2 -> System.out.println("twenty");
-                case 3 -> System.out.println("thirty");
-                case 4 -> System.out.println("forty");
-                case 5 -> System.out.println("fifty");
-                case 6 -> System.out.println("sixty");
-                case 7 -> System.out.println("seventy");
-                case 8 -> System.out.println("eighty");
-                case 9 -> System.out.println("ninety");
-            }
-            System.out.println(" And ");
-            switch (ones1){
-                case 1 -> System.out.println("One");
-                case 2 -> System.out.println("Two");
-                case 3 -> System.out.println("Three");
-                case 4 -> System.out.println("Four");
-                case 5 -> System.out.println("Five");
-                case 6 -> System.out.println("Six");
-                case 7 -> System.out.println("Seven");
-                case 8 -> System.out.println("Eight");
-                case 9 -> System.out.println("Nine");
-            }
+        if(a<=10){
+            String b = unit(a);
+            System.out.printf(b);
+        } else if (a>10 && a<20) {
+            String b = dozens(a);
+            System.out.println(b);
+        }else if(a>20 && a<100){
+            String b = dozens2(a);
+            System.out.println(b);
+        }else if(a>=100 && a<1000){
+            String b = hundred(a);
+            System.out.println(b);
         }
 
+    }
+    public static String unit(int a){
+        switch (a){
+            case 0:break;
+            case 1: return "One";
+            case 2: return "Two";
+            case 3: return "Three";
+            case 4: return "Four";
+            case 5: return "Five";
+            case 6: return "Six";
+            case 7: return "Seven";
+            case 8: return "Eight";
+            case 9: return "Nine";
+            case 10: return "Ten";
+        }
+        return "";
+    }
+    public static String dozens(int a){
+        int b = a%10;
+        String c = "";
+        switch (b){
+            case 0:break;
+            case 1: c ="Elevent"; break;
+            case 2: c ="Twelve"; break;
+            case 3: c ="Thirteen"; break;
+            case 4: c ="Fourteen"; break;
+            case 5: c ="Fifteen"; break;
+            case 6: c ="Sixteen"; break;
+            case 7: c ="Seventeen"; break;
+            case 8: c ="Eighteen"; break;
+            case 9: c ="Nineteen"; break;
+        }
+        return c;
+    }
+    public static String dozens2(int a){
+        int b = a/10;
+        int c = a%10;
+        String d ="";
+        String e =unit(c);
+        switch (b){
+            case 0:break;
+            case 1:break;
+            case 2: d="twenty";break;
+            case 3: d="thirty";break;
+            case 4: d="fourty";break;
+            case 5: d="fifty";break;
+            case 6: d="sixty";break;
+            case 7: d="seventy";break;
+            case 8: d="eighty";break;
+            case 9: d="ninety";break;
+        }
+        return d+" "+e;
+    }
+    public static String hundred(int a){
+        int b = a/100;
+        int c = a%100;
+        String y ="";
+        if(c>10 && c<20){
+            y = dozens(c);
+        }else{
+            y = dozens2(c);
+        }
+        String z = unit(b);
+        return z +"hundred and "+y;
     }
 }
